@@ -1,7 +1,9 @@
 import uuid
 
-def make_upload_path(folder):
-    def upload_to(instance, filename):
+class UploadToPath:
+    def __init__(self, folder):
+        self.folder = folder
+
+    def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        return f"{folder}/{uuid.uuid4()}.{ext}"
-    return upload_to
+        return f"{self.folder}/{uuid.uuid4()}.{ext}"
